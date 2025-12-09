@@ -6,17 +6,21 @@ use App\Models\Categoria;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use App\Models\Usuario;
+use Illuminate\View\View;
 
 class CategoriaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    protected $usuario;
+     public function __construct()
+    {
+        // Esto se ejecuta para todos los métodos del controlador
+        $this->usuario = Usuario::find(1);
+        view()->share('usuario', $this->usuario);
+    }
     public function index()
     {
-        $Usuario = Usuario::find(1);
         $categories = Categoria::all();
-        return view('categories.index', compact('categories', 'Usuario'));
+        return view('categories.index', compact('categories'));
     }
 
     /**
@@ -45,9 +49,11 @@ class CategoriaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Categoria $category)
+    public function show(Categoria $category): View
     {
-        //
+         // $category se inyecta y carga automáticamente.
+        return view('categories.show', compact('category'));
+
     }
 
     /**
