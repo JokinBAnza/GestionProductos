@@ -26,15 +26,49 @@ En este proyecto tienes acceso a **3 secciones principales**:
 
 ---
 
-## 🎨 Estilo de la interfaz
+🚀 Cómo usar
+1️⃣ Clonar el repositorio
+bash
+Copiar código
+git clone https://github.com/tu-usuario/gestion-productos.git
+cd gestion-productos
+2️⃣ Levantar el proyecto con Docker
+Se asume que tienes instalado Docker y Docker Compose:
 
-El proyecto utiliza un layout base (`layout.blade.php`) con estilos internos para mejorar la visualización:
+bash
+Copiar código
+docker compose up -d
+Esto levantará los servicios necesarios:
 
-```css
-main {
-    margin-left: 10px;
-}
-li {
-    margin-left: 25px;
-}
+PHP + Apache para la aplicación Laravel
+
+MySQL como base de datos
+
+3️⃣ Configurar entorno
+Copia el archivo de ejemplo .env.example a .env:
+
+bash
+Copiar código
+cp .env.example .env
+Actualiza los datos de la base de datos según tu contenedor MySQL (usuario, contraseña, nombre de BD).
+
+Instala dependencias de PHP/Laravel:
+
+bash
+Copiar código
+docker compose exec app composer install
+docker compose exec app php artisan key:generate
+docker compose exec app php artisan migrate
+4️⃣ Acceder a la aplicación
+Abre tu navegador y entra a:
+
+arduino
+Copiar código
+http://localhost:8000
+Ahora podrás usar todas las secciones del sistema.
+
+📌 Recomendaciones
+Siempre verifica que una categoría no tenga productos antes de eliminarla.
+
+Mantén tus datos organizados para facilitar la gestión del inventario.
 
